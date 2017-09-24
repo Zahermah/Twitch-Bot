@@ -27,7 +27,7 @@ client.on('chat',function(channel,user,message,self) {
     client.action("NameofChannel", "Please follow here: https://twitter.com/" );
     }
     if(message === "!game"){
-        client.action("NameofChannel", "I really dont know this game, This guy changes game all the time.");
+        client.action("NameofChannel", "Enter Name of game");
     }
     if(message === "!time"){
         client.action("NameofChannel", "The Time is "+ date +" ");
