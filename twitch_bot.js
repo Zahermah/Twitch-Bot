@@ -21,44 +21,44 @@ var date = new Date();
 
 var client = new tmi.client(options);
 client.connect();
-
 client.on('chat',function(channel,user,message,self) {
-    if(message === "!twitter"){
-    client.action("NameofChannel", "Please follow here: https://twitter.com/" );
-    }
-    if(message === "!game"){
+    switch(message){
+        case "!twitter":
+        client.action("NameofChannel", "Please follow here: https://twitter.com/" );
+        break;
+        case "!game":
         client.action("NameofChannel", "Enter Name of game");
-    }
-    if(message === "!time"){
+        break;
+        case "!time":
         client.action("NameofChannel", "The Time is "+ date +" ");
-    }
-    if(message === "!options"){
+        break;
+        case "!options":
         client.action("NameofChannel","!time,!game,!twitter,!song");
-    }
-    if(message === "!about"){
+        break;
+        case "!about":
         client.action("NameofChannel","Enter some message");
-    }
-    if(message === "!friend"){
+        break;
+        case  "!friend":
         client.action("NameofChannel", "Enter some message");
-    }
-    if(message ==="!song"){
+        break;
+        case "!song":
         client.action("NameofChannel","Link: to spotifylist");
-    }
-
-
-});
-
-
-client.on('chat',function(channel,user, message,self){
-    if(message === "Hey" ){
-    client.action("nameofchannel",user['display-name']);
-    setTimeout(function() {  
-        client.action("name of channel", "Hey and Welcome to the channel");  
-    }, secToWait);
-    
+        break;
+        case "Hey":
+        client.action("nameofchannel",user['display-name']);
+        setTimeout(function() {  
+            client.action("name of channel", "Hey and Welcome to the channel");  
+        }, secToWait);
+        break;
+        default:
+        client.action("name of channel", "Hey");
+        break;
     }
 });
 
 client.on('connected', function(address,port){
     client.action("Name of channel", "Welcome message");
+});
+client.on('disconnected',function(reason){
+    client.action("Name of channel","User has been disconnected");
 });
